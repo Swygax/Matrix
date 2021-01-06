@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rwjPF7Y41vJ8caxUuXgrjs06wEDUvt6Kux/q1V4CcKo5c87bdr/YcKScbHG+uSp/8Z+v6fhrQyuTQHcrJkcapg==",
+  "dgSpecHash": "eN/myAkZICipFfh8B72dl0NtiG30M19AC4DY9+7c9YynJAIUN3b4leQrsnkbIGlRrAr5Nq98ZNVIgc5gKaqzig==",
   "success": true,
-  "projectFilePath": "/home/swygax/Projects/Dotnet/DotNet-Core-5/Treino/Matrizes/Matrix/MultMatriz.csproj",
+  "projectFilePath": "/home/swygax/Projects/dotnet/NeuralNetwork/NeuralNetwork.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,29 +1,24 @@
 ﻿using System;
 
-namespace Matrix
+namespace NeuralNetwork
 {
-  class Program
-  {
-    public static void Main(string[] args)
+    class Program
     {
-      Matrix A = new Matrix();
-      A.name = "A";
-      A.make();
+        static void Main(string[] args)
+        {
+            Matrix A = new Matrix("A", 2, 2);
+            Matrix B = new Matrix("B", 2, 2);
+            Matrix C = new Matrix("C", 2, 2);
+	        Matrix D = new Matrix("D", 2, 2);
 
-
-      Matrix B = new Matrix();
-      B.name = "B";
-      B.make();
-
-      A.show();
-
-      B.show();
-
-      //Matrix AB = new Matrix();
-      //AB.add(A,B, "S");
-
-      Matrix PAB = new Matrix();
-      PAB.mult(A, B, "Produto AB");
+            if(A.make() == 0)
+                Console.WriteLine(A.show());
+            if(B.make() == 0)
+                Console.WriteLine(B.show());
+            if(C.mul(A, B) == 0)
+                Console.WriteLine(C.show());
+            if(D.add(B, C) == 0)
+	            Console.WriteLine(D.show());
+        }
     }
-  }
 }

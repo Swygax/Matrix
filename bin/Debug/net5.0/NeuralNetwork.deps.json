@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "MultMatriz/1.0.0": {
+      "NeuralNetwork/1.0.0": {
         "runtime": {
-          "MultMatriz.dll": {}
+          "NeuralNetwork.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "MultMatriz/1.0.0": {
+    "NeuralNetwork/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

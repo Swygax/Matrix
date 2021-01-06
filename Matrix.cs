@@ -1,81 +1,73 @@
 using System;
 
-namespace Matrix{
-  class Matrix{
-    public string name;
-    public int line, column;
-    public double[,] matrix;
+namespace NeuralNetwork {
+    public class Matrix {
+        string name;
+        int line, column;
+        double[,] data;
 
-    // matrix constructor
-    public void make(){
-      Console.WriteLine("\nMatrix {0}", this.name);
-      Console.Write("Enter the number of rows in the matrix: ");
-      this.line = Convert.ToInt32(Console.ReadLine());
-      Console.Write("Enter the number of columns in the matrix: ");
-      this.column = Convert.ToInt32(Console.ReadLine());
-      Console.WriteLine("The order or type of the matrix {0} is ({1} by {2})", this.name, this.line.ToString(), this.column.ToString());
-
-      this.matrix = new double [this.line, this.column];
-      for (int i=0; i < this.line; i++){
-        for (int j=0; j < this.column; j++){
-          Console.Write("{0}) {1}, {2} =  ",this.name, i+1, j+1);
-          this.matrix[i,j] = Convert.ToDouble(Console.ReadLine());
+        public Matrix(string n, int lin, int col) {
+            this.name = n;
+            this.line = lin;
+            this.column = col;
         }
-      }
-    }
-    
-    // function to show the matrix on the screen
-    public void show(){
-      Console.WriteLine("Matrix {0}", this.name);
-      for (int i=0; i < this.line; i++){
-        Console.WriteLine("");
-        for (int j=0; j < this.column; j++){
-          Console.Write("\t{0},{1}:[\t{2} ]", i+1, j+1, matrix[i,j]);
+
+        public string show() {
+            string s = "";
+            for(int i=0; i<this.line; i++) {
+                for(int j=0; j<this.column; j++) {
+                    s += Convert.ToString(this.data[i,j]) + "\t";
+                }
+                s += "\n";
+            }
+            return "Name: " + this.name + ", lines: " + this.line + ", columns: " + this.column + "\n" + s;
         }
-        Console.WriteLine("");
-      }
-    }
 
-
-    public void mk(int x, int y, String name){
-      this.line = x;
-      this.column = y;
-      this.name = name;
-      this.matrix = new double [this.line, this.column];
-    }
-
-    public void add(Matrix x, Matrix y, String name){
-      mk(x.line, y.column, name);
-      if(x.line != y.line && x.column != y.column){
-        Console.WriteLine("Error: The order or type of the matrix is different!");
-        return;
-      }
-      for (int i=0; i < x.line; i++){
-        for (int j=0; j < y.column; j++){
-          this.matrix[i,j] = x.matrix[i,j] + y.matrix[i,j];
+        public int make() {
+            this.data = new double[this.line, this.column];
+            for(int i=0; i<this.line; i++) {
+                for(int j=0; j <this.column; j++) {
+                    Console.Write("[{0} , {1}] <= ", i+1, j+1);
+                    this.data[i,j] = Convert.ToDouble(Console.ReadLine());
+                }
+            }
+            return 0;
         }
-      }
-      this.show();
-    }
+        
 
-
-    public void mult(Matrix x, Matrix y, String name){
-      double acumula=0;
-      mk(x.line, y.column, name);
-      if(x.column != y.line){
-        Console.WriteLine("Error: these matrix is not able to multiply");
-        return;
-      }
-      for(int i=0; i < x.line; i++){
-        for(int j=0; j < y.column; j++){
-          for(int k=0; k < y.line; k++){
-            acumula = acumula + x.matrix[i,k] * y.matrix[k,j];
-          }
-          this.matrix[i,j] = acumula;
-          acumula=0;
+        public int add(Matrix A, Matrix B) {
+            if(A.line == B.line && A.column == B.column) {
+                this.data = new double[A.line, A.column];
+                for(int i=0; i<this.line; i++) {
+                    for(int j=0; j<this.column; j++) {
+                        this.data[i,j] = A.data[i,j] + B.data[i,j];
+                    }
+                }
+                return 0;
+            } else {
+                Console.WriteLine("These arrays cannot be added.");
+                return 1;
+            }
         }
-      }
-      this.show();
+
+        public int mul(Matrix A, Matrix B) {
+            if(A.column == B.line){
+                double cont = 0;
+                this.data = new double[A.line, B.column];
+                for(int i=0; i<A.line; i++) {
+                    for(int j=0; j<B.column; j++) {
+                        for(int x=0; x<A.column; x++) {
+                            cont += A.data[i,x] * B.data[x,j];
+                        }
+                        this.data[i,j] = cont;
+                        cont = 0;
+                    }
+                }
+                return 0;
+            } else {
+                Console.WriteLine("These matrices are not can be multiplied.");
+                return 1;
+            }
+        }
     }
-  }
 }
